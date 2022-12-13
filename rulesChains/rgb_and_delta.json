@@ -1,0 +1,505 @@
+{
+  "ruleChain": {
+    "additionalInfo": {
+      "description": ""
+    },
+    "name": "RGB and delta",
+    "type": "CORE",
+    "firstRuleNodeId": null,
+    "root": false,
+    "debugMode": true,
+    "configuration": null
+  },
+  "metadata": {
+    "firstNodeIndex": 23,
+    "nodes": [
+      {
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 538,
+          "layoutY": 489
+        },
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create Alarm",
+        "debugMode": true,
+        "configuration": {
+          "alarmType": "Critical Temperature",
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\nreturn details;",
+          "severity": "CRITICAL",
+          "propagate": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 746,
+          "layoutY": 500
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Status True",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "var newMsg = {};\nnewMsg.method = 'Status';\nmsgType = 'RPC message';\nnewMsg.params = 'true';\n\nreturn {msg: newMsg, metadata: metadata, msgType: msgType}; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1257,
+          "layoutY": 494
+        },
+        "type": "org.thingsboard.rule.engine.rpc.TbSendRPCRequestNode",
+        "name": "Status True",
+        "debugMode": true,
+        "configuration": {
+          "timeoutInSeconds": 60
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1010,
+          "layoutY": 497
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check RPC msg",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "return msgType == 'RPC message'; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 517,
+          "layoutY": 586
+        },
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create Alarm",
+        "debugMode": true,
+        "configuration": {
+          "alarmType": "Critical Temperature",
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\nreturn details;",
+          "severity": "CRITICAL",
+          "propagate": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 725,
+          "layoutY": 597
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Status True",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "var newMsg = {};\nnewMsg.method = 'Status';\nmsgType = 'RPC message';\nnewMsg.params = 'tgue';\n\nreturn {msg: newMsg, metadata: metadata, msgType: msgType}; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 989,
+          "layoutY": 594
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check RPC msg",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "return msgType == 'RPC message'; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 522,
+          "layoutY": 671
+        },
+        "type": "org.thingsboard.rule.engine.action.TbCreateAlarmNode",
+        "name": "Create Alarm",
+        "debugMode": true,
+        "configuration": {
+          "alarmType": "Critical Temperature",
+          "alarmDetailsBuildJs": "var details = {};\nif (metadata.prevAlarmDetails) {\n    details = JSON.parse(metadata.prevAlarmDetails);\n}\nreturn details;",
+          "severity": "CRITICAL",
+          "propagate": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": null,
+          "layoutX": 730,
+          "layoutY": 682
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Status True",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "var newMsg = {};\nnewMsg.method = 'Status';\nmsgType = 'RPC message';\nnewMsg.params = 'tbue';\n\nreturn {msg: newMsg, metadata: metadata, msgType: msgType}; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 994,
+          "layoutY": 679
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "Check RPC msg",
+        "debugMode": true,
+        "configuration": {
+          "jsScript": "return msgType == 'RPC message'; "
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1266,
+          "layoutY": 594
+        },
+        "type": "org.thingsboard.rule.engine.rpc.TbSendRPCRequestNode",
+        "name": "Status True",
+        "debugMode": true,
+        "configuration": {
+          "timeoutInSeconds": 60
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 1268,
+          "layoutY": 683
+        },
+        "type": "org.thingsboard.rule.engine.rpc.TbSendRPCRequestNode",
+        "name": "Status True",
+        "debugMode": true,
+        "configuration": {
+          "timeoutInSeconds": 60
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 54,
+          "layoutY": 496
+        },
+        "type": "org.thingsboard.rule.engine.metadata.CalculateDeltaNode",
+        "name": "delta3",
+        "debugMode": false,
+        "configuration": {
+          "inputValueKey": "bouton3",
+          "outputValueKey": "Delta_3",
+          "useCache": true,
+          "addPeriodBetweenMsgs": false,
+          "periodValueKey": "periodInMs",
+          "round": null,
+          "tellFailureIfDeltaIsNegative": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 53,
+          "layoutY": 592
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "DeltaChange_Then_Email",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return !(msg.Delta_1 == 0 && msg.Delta_2 == 0 && msg.Delta_3 == 0);"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 324,
+          "layoutY": 151
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "jeu1",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return (msg.bouton1 ==1 && msg.bouton2==0 && msg.bouton3==1);"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 617,
+          "layoutY": 75
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Courriel_1",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.delta_1 = msg.Delta_1;\nmetadata.delta_2 = msg.Delta_2;\nmetadata.delta_3 = msg.Delta_3;\nmetadata.Statut_Broche_1 = msg.bouton1;\nmetadata.Statut_Broche_2 = msg.bouton2;\nmetadata.Statut_Broche_3 = msg.bouton3;\nmetadata.message=\"coleur : rouge , eteint,bleu\";\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 328,
+          "layoutY": 247
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "jeu2",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return (msg.bouton1 ==0 && msg.bouton2==1  && msg.bouton3==0);"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 617,
+          "layoutY": 139
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Courriel_2",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.delta_1 = msg.Delta_1;\nmetadata.delta_2 = msg.Delta_2;\nmetadata.delta_3 = msg.Delta_3;\n\nmetadata.Statut_Broche_1 = msg.bouton1;\nmetadata.Statut_Broche_2 = msg.bouton2;\nmetadata.Statut_Broche_2 = msg.bouton3;\nmetadata.message=\"coleur : eteint,vert,eteint\"\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 328,
+          "layoutY": 342
+        },
+        "type": "org.thingsboard.rule.engine.filter.TbJsFilterNode",
+        "name": "jeu3",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "return (msg.bouton1 ==1 && msg.bouton2==1 && msg.bouton3==0  );"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 618,
+          "layoutY": 210
+        },
+        "type": "org.thingsboard.rule.engine.transform.TbTransformMsgNode",
+        "name": "Courriel_3",
+        "debugMode": false,
+        "configuration": {
+          "jsScript": "metadata.delta_1 = msg.Delta_1;\nmetadata.delta_2 = msg.Delta_2;\nmetadata.delta_3 = msg.Delta_3;\n\nmetadata.Statut_Broche_1 = msg.bouton1;\nmetadata.Statut_Broche_2 = msg.bouton2;\nmetadata.Statut_Broche_2 = msg.bouton3;\nmetadata.message=\"coleur : rouge,vert,eteint\"\nreturn {msg: msg, metadata: metadata, msgType: msgType};"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 940,
+          "layoutY": 148
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbMsgToEmailNode",
+        "name": "To Email",
+        "debugMode": true,
+        "configuration": {
+          "fromTemplate": "ido@ccnb.ca",
+          "toTemplate": "ecyontay01@monccnb.ca",
+          "ccTemplate": null,
+          "bccTemplate": null,
+          "subjectTemplate": "Notification ${message}",
+          "mailBodyType": null,
+          "isHtmlTemplate": null,
+          "bodyTemplate": " Le statut de la broche 1 est ${Statut_Broche_1} \n Le statut de la broche 2 est ${Statut_Broche_2}\n Le statut de la broche 3 est ${Statut_Broche_3}\n et le message est ${message}\n\nDelta pour la broche 1 est ${delta_sb_1}\nDelta pour la broche 2 est ${delta_sb_2}"
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 947,
+          "layoutY": 277
+        },
+        "type": "org.thingsboard.rule.engine.mail.TbSendEmailNode",
+        "name": "Send email",
+        "debugMode": true,
+        "configuration": {
+          "useSystemSmtpSettings": true,
+          "smtpHost": "localhost",
+          "smtpPort": 25,
+          "username": null,
+          "password": null,
+          "smtpProtocol": "smtp",
+          "timeout": 10000,
+          "enableTls": false,
+          "tlsVersion": "TLSv1.2",
+          "enableProxy": false,
+          "proxyHost": null,
+          "proxyPort": null,
+          "proxyUser": null,
+          "proxyPassword": null
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 61,
+          "layoutY": 399
+        },
+        "type": "org.thingsboard.rule.engine.metadata.CalculateDeltaNode",
+        "name": "delta2",
+        "debugMode": true,
+        "configuration": {
+          "inputValueKey": "bouton2",
+          "outputValueKey": "Delta_2",
+          "useCache": true,
+          "addPeriodBetweenMsgs": false,
+          "periodValueKey": "periodInMs",
+          "round": null,
+          "tellFailureIfDeltaIsNegative": true
+        }
+      },
+      {
+        "additionalInfo": {
+          "description": "",
+          "layoutX": 65,
+          "layoutY": 309
+        },
+        "type": "org.thingsboard.rule.engine.metadata.CalculateDeltaNode",
+        "name": "delta1",
+        "debugMode": true,
+        "configuration": {
+          "inputValueKey": "bouton1",
+          "outputValueKey": "Delta_1",
+          "useCache": true,
+          "addPeriodBetweenMsgs": true,
+          "periodValueKey": "periodInMs",
+          "round": null,
+          "tellFailureIfDeltaIsNegative": false
+        }
+      }
+    ],
+    "connections": [
+      {
+        "fromIndex": 0,
+        "toIndex": 1,
+        "type": "Created"
+      },
+      {
+        "fromIndex": 1,
+        "toIndex": 3,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 3,
+        "toIndex": 2,
+        "type": "True"
+      },
+      {
+        "fromIndex": 4,
+        "toIndex": 5,
+        "type": "Created"
+      },
+      {
+        "fromIndex": 5,
+        "toIndex": 6,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 6,
+        "toIndex": 10,
+        "type": "True"
+      },
+      {
+        "fromIndex": 7,
+        "toIndex": 8,
+        "type": "Created"
+      },
+      {
+        "fromIndex": 8,
+        "toIndex": 9,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 9,
+        "toIndex": 11,
+        "type": "True"
+      },
+      {
+        "fromIndex": 12,
+        "toIndex": 13,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 13,
+        "toIndex": 14,
+        "type": "True"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 15,
+        "type": "True"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 16,
+        "type": "False"
+      },
+      {
+        "fromIndex": 14,
+        "toIndex": 0,
+        "type": "True"
+      },
+      {
+        "fromIndex": 15,
+        "toIndex": 20,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 16,
+        "toIndex": 17,
+        "type": "True"
+      },
+      {
+        "fromIndex": 16,
+        "toIndex": 18,
+        "type": "False"
+      },
+      {
+        "fromIndex": 16,
+        "toIndex": 4,
+        "type": "True"
+      },
+      {
+        "fromIndex": 17,
+        "toIndex": 20,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 19,
+        "type": "True"
+      },
+      {
+        "fromIndex": 18,
+        "toIndex": 7,
+        "type": "True"
+      },
+      {
+        "fromIndex": 19,
+        "toIndex": 20,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 20,
+        "toIndex": 21,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 22,
+        "toIndex": 12,
+        "type": "Success"
+      },
+      {
+        "fromIndex": 23,
+        "toIndex": 22,
+        "type": "Success"
+      }
+    ],
+    "ruleChainConnections": null
+  }
+}
